@@ -2,7 +2,9 @@ package com.ibm.appid.spring.boot;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
 import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.boot.context.properties.bind.Bindable;
@@ -25,11 +27,13 @@ public class AppIDOAuth2ConfiguredCondition extends SpringBootCondition {
 
 	@Override
 	public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		ConditionMessage.Builder message = ConditionMessage.forCondition("OAuth2 Clients Configured Condition");
 		Map<String, OAuth2ClientProperties.Registration> registrations = getRegistrations(context.getEnvironment());
 		if (!registrations.isEmpty() && registrations.containsKey("appid")) {
-			return ConditionOutcome.match("AppID registration found");
+			return ConditionOutcome.match(message.foundExactly("registered clients " + registrations.values().stream()
+					.map(OAuth2ClientProperties.Registration::getClientId).collect(Collectors.joining(", "))));
 		}
-		return ConditionOutcome.noMatch("No matching AppID registration found");
+		return ConditionOutcome.noMatch(message.notAvailable("registered clients"));
 	}
 	
 	private Map<String, OAuth2ClientProperties.Registration> getRegistrations(Environment environment) {
