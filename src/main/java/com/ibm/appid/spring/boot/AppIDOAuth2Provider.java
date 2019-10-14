@@ -131,16 +131,6 @@ public enum AppIDOAuth2Provider {
 	private static final String APPID_OAUTH_URL_LONDON = "https://eu-gb.appid.cloud.ibm.com/oauth/v4/";
 	private static final String APPID_OAUTH_URL_TOKYO = "https://jp-tok.appid.cloud.ibm.com/oauth/v4/";
 
-
-//	protected final ClientRegistration.Builder getBuilder(String registrationId,
-//			String clientId, String clientSecret, String redirectUri) {
-//		ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-//		builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-//		builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-//		builder.redirectUriTemplate(redirectUri);
-//		return builder;
-//	}
-
 	/**
 	 * Create a new pre-configured with provider defaults.
 	 */
