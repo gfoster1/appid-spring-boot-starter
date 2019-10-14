@@ -1,5 +1,8 @@
 package com.ibm.appid.spring.boot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -21,24 +24,7 @@ public class AppIDOAuth2AutoConfig {
 
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository(this.googleClientRegistration());
-    }
-
-    private ClientRegistration googleClientRegistration() {
-    	AppIDOAuth2ConfigurationProperties.Registration clientConfig = properties.getRegistration().get("appid");
-        return ClientRegistration.withRegistrationId("appid")
-            .clientId(clientConfig.getClientId())
-            .clientSecret(clientConfig.getClientSecret())
-            .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
-            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-            .redirectUriTemplate("http://localhost:8080/user")
-            .scope(clientConfig.getScope())
-            .authorizationUri("https://au-syd.appid.cloud.ibm.com/oauth/v4/7b1d65f8-8283-47d2-96f4-998569e75433/authorization")
-            .tokenUri("https://au-syd.appid.cloud.ibm.com/oauth/v4/7b1d65f8-8283-47d2-96f4-998569e75433/token")
-            .userInfoUri("https://au-syd.appid.cloud.ibm.com/oauth/v4/7b1d65f8-8283-47d2-96f4-998569e75433/userinfo")
-//            .userNameAttributeName(IdTokenClaimNames.SUB)
-//            .jwkSetUri("https://www.googleapis.com/oauth2/v3/certs")
-            .clientName("appid")
-            .build();
+		List<ClientRegistration> registrations = new ArrayList<>(AppIDOAuth2ClientPropertiesRegistrationAdapter.getClientRegistrations(properties).values());
+        return new InMemoryClientRegistrationRepository(registrations);
     }
 }

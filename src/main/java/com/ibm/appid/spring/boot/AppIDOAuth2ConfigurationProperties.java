@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties.Provider;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties.Registration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
