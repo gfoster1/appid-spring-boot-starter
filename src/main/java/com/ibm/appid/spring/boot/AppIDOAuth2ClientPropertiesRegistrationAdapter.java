@@ -36,16 +36,6 @@ public class AppIDOAuth2ClientPropertiesRegistrationAdapter {
 	private static ClientRegistration getClientRegistration(String registrationId,
 			AppIDOAuth2ConfigurationProperties.Registration properties) {
 		Builder builder = getBuilder(registrationId, properties.getProvider(), properties);
-		PropertyMapper map = PropertyMapper.get().alwaysApplyingWhenNonNull();
-		map.from(properties::getClientId).to(builder::clientId);
-		map.from(properties::getClientSecret).to(builder::clientSecret);
-		map.from(properties::getClientAuthenticationMethod).as(ClientAuthenticationMethod::new)
-				.to(builder::clientAuthenticationMethod);
-		map.from(properties::getAuthorizationGrantType).as(AuthorizationGrantType::new)
-				.to(builder::authorizationGrantType);
-		map.from(properties::getRedirectUri).to(builder::redirectUriTemplate);
-		map.from(properties::getScope).as(StringUtils::toStringArray).to(builder::scope);
-		map.from(properties::getClientName).to(builder::clientName);
 		return builder.build();
 	}
 

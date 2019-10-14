@@ -19,8 +19,12 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = getBuilder(registrationId, properties.getClientId(),
-					properties.getClientSecret(), properties.getRedirectUri());
+			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+			builder.clientId(properties.getClientId());
+			builder.clientSecret(properties.getClientSecret());
+			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+			builder.redirectUriTemplate(properties.getRedirectUri());
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
@@ -37,8 +41,12 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = getBuilder(registrationId, properties.getClientId(),
-					properties.getClientSecret(), properties.getRedirectUri());
+			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+			builder.clientId(properties.getClientId());
+			builder.clientSecret(properties.getClientSecret());
+			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+			builder.redirectUriTemplate(properties.getRedirectUri());
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
@@ -55,8 +63,12 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = getBuilder(registrationId, properties.getClientId(),
-					properties.getClientSecret(), properties.getRedirectUri());
+			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+			builder.clientId(properties.getClientId());
+			builder.clientSecret(properties.getClientSecret());
+			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+			builder.redirectUriTemplate(properties.getRedirectUri());
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
@@ -73,11 +85,15 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = getBuilder(registrationId, properties.getClientId(),
-					properties.getClientSecret(), properties.getRedirectUri());
+			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+			builder.clientId(properties.getClientId());
+			builder.clientSecret(properties.getClientSecret());
+			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+			builder.redirectUriTemplate(properties.getRedirectUri());
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
-			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
+			builder.scope(properties.getScope() != null && properties.getScope().size() > 0 ? properties.getScope() : scope);
 			builder.authorizationUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/userinfo");
@@ -91,8 +107,12 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = getBuilder(registrationId, properties.getClientId(),
-					properties.getClientSecret(), properties.getRedirectUri());
+			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+			builder.clientId(properties.getClientId());
+			builder.clientSecret(properties.getClientSecret());
+			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+			builder.redirectUriTemplate(properties.getRedirectUri());
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
@@ -112,14 +132,14 @@ public enum AppIDOAuth2Provider {
 	private static final String APPID_OAUTH_URL_TOKYO = "https://jp-tok.appid.cloud.ibm.com/oauth/v4/";
 
 
-	protected final ClientRegistration.Builder getBuilder(String registrationId,
-			String clientId, String clientSecret, String redirectUri) {
-		ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-		builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-		builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-		builder.redirectUriTemplate(redirectUri);
-		return builder;
-	}
+//	protected final ClientRegistration.Builder getBuilder(String registrationId,
+//			String clientId, String clientSecret, String redirectUri) {
+//		ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+//		builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+//		builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+//		builder.redirectUriTemplate(redirectUri);
+//		return builder;
+//	}
 
 	/**
 	 * Create a new pre-configured with provider defaults.
