@@ -24,9 +24,9 @@ public enum AppIDOAuth2Provider {
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_URL_DALLAS + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_URL_DALLAS + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_URL_DALLAS + properties.getTenantID() + "/userinfo");
+			builder.authorizationUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/authorization");
+			builder.tokenUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/token");
+			builder.userInfoUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/userinfo");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -42,9 +42,9 @@ public enum AppIDOAuth2Provider {
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_URL_SYDNEY + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_URL_SYDNEY + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_URL_SYDNEY + properties.getTenantID() + "/userinfo");
+			builder.authorizationUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/authorization");
+			builder.tokenUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/token");
+			builder.userInfoUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/userinfo");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -60,9 +60,9 @@ public enum AppIDOAuth2Provider {
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_URL_FRANKFURT + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_URL_FRANKFURT + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_URL_FRANKFURT + properties.getTenantID() + "/userinfo");
+			builder.authorizationUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/authorization");
+			builder.tokenUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/token");
+			builder.userInfoUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/userinfo");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -78,9 +78,9 @@ public enum AppIDOAuth2Provider {
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_URL_LONDON + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_URL_LONDON + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_URL_LONDON + properties.getTenantID() + "/userinfo");
+			builder.authorizationUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/authorization");
+			builder.tokenUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/token");
+			builder.userInfoUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/userinfo");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -96,20 +96,20 @@ public enum AppIDOAuth2Provider {
 			Set<String> scope = new HashSet<String>();
 			scope.add("openid");
 			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_URL_TOKYO + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_URL_TOKYO + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_URL_TOKYO + properties.getTenantID() + "/userinfo");
+			builder.authorizationUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/authorization");
+			builder.tokenUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/token");
+			builder.userInfoUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/userinfo");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
 		}
 	};
 	
-	private static final String APPID_URL_DALLAS = "{baseUrl}/{action}/oauth2/code/{registrationId}";
-	private static final String APPID_URL_SYDNEY = "{baseUrl}/{action}/oauth2/code/{registrationId}";
-	private static final String APPID_URL_FRANKFURT = "{baseUrl}/{action}/oauth2/code/{registrationId}";
-	private static final String APPID_URL_LONDON = "{baseUrl}/{action}/oauth2/code/{registrationId}";
-	private static final String APPID_URL_TOKYO = "{baseUrl}/{action}/oauth2/code/{registrationId}";
+	private static final String APPID_OAUTH_URL_DALLAS = "https://us-south.appid.cloud.ibm.com/oauth/v4/";
+	private static final String APPID_OAUTH_URL_SYDNEY = "https://au-syd.appid.cloud.ibm.com/oauth/v4/";
+	private static final String APPID_OAUTH_URL_FRANKFURT = "https://eu-de.appid.cloud.ibm.com/oauth/v4/";
+	private static final String APPID_OAUTH_URL_LONDON = "https://eu-gb.appid.cloud.ibm.com/oauth/v4/";
+	private static final String APPID_OAUTH_URL_TOKYO = "https://jp-tok.appid.cloud.ibm.com/oauth/v4/";
 
 
 	protected final ClientRegistration.Builder getBuilder(String registrationId,
