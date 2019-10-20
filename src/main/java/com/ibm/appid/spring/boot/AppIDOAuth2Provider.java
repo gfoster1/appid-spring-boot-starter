@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
+import org.springframework.util.StringUtils;
 
 /**
  * AppID OAuth2 Providers that can be used to create pre-configured with sensible defaults.
@@ -31,6 +32,7 @@ public enum AppIDOAuth2Provider {
 			builder.authorizationUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/userinfo");
+			builder.jwkSetUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/publickeys");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -53,6 +55,7 @@ public enum AppIDOAuth2Provider {
 			builder.authorizationUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/userinfo");
+			builder.jwkSetUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/publickeys");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -75,6 +78,7 @@ public enum AppIDOAuth2Provider {
 			builder.authorizationUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/userinfo");
+			builder.jwkSetUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/publickeys");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -97,6 +101,7 @@ public enum AppIDOAuth2Provider {
 			builder.authorizationUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/userinfo");
+			builder.jwkSetUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/publickeys");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
@@ -119,6 +124,7 @@ public enum AppIDOAuth2Provider {
 			builder.authorizationUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/authorization");
 			builder.tokenUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/token");
 			builder.userInfoUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/userinfo");
+			builder.jwkSetUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/publickeys");
 			builder.userNameAttributeName(IdTokenClaimNames.SUB);
 			builder.clientName("AppID");
 			return builder;
