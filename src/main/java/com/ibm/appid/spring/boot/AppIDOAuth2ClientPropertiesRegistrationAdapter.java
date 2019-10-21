@@ -6,6 +6,10 @@ import java.util.Map;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistration.Builder;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import org.springframework.util.StringUtils;
+import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.boot.convert.ApplicationConversionService;
 import org.springframework.core.convert.ConversionException;
 
@@ -37,8 +41,24 @@ public class AppIDOAuth2ClientPropertiesRegistrationAdapter {
 		String providerId = (configuredProviderId != null) ? configuredProviderId : registrationId;
 		CommonOAuth2Provider provider = getCommonProvider(providerId);
 		AppIDOAuth2Provider appIDProvider = getAppIDProvider(properties.getRegion());
-		Builder builder = (provider != null) ? provider.getBuilder(registrationId)
+		Builder builder = (provider != null) ? getCommonProviderBuilder(provider, registrationId, properties)
 				: appIDProvider.getBuilder(registrationId, properties);
+		return builder;
+	}
+	
+	private static Builder getCommonProviderBuilder(CommonOAuth2Provider provider, String registrationId,
+			AppIDOAuth2ConfigurationProperties.Registration properties) {
+		Builder builder = provider.getBuilder(registrationId);
+		PropertyMapper map = PropertyMapper.get().alwaysApplyingWhenNonNull();
+		map.from(properties::getClientId).to(builder::clientId);
+		map.from(properties::getClientSecret).to(builder::clientSecret);
+		map.from(properties::getClientAuthenticationMethod).as(ClientAuthenticationMethod::new)
+				.to(builder::clientAuthenticationMethod);
+		map.from(properties::getAuthorizationGrantType).as(AuthorizationGrantType::new)
+				.to(builder::authorizationGrantType);
+		map.from(properties::getRedirectUri).to(builder::redirectUriTemplate);
+		map.from(properties::getScope).as(StringUtils::toStringArray).to(builder::scope);
+		map.from(properties::getClientName).to(builder::clientName);
 		return builder;
 	}
 
