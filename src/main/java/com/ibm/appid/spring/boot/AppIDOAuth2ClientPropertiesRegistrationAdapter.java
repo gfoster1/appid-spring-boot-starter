@@ -6,18 +6,11 @@ import java.util.Map;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistration.Builder;
-import org.springframework.security.oauth2.client.registration.ClientRegistrations;
-import org.springframework.security.oauth2.core.AuthenticationMethod;
-import org.springframework.security.oauth2.core.AuthorizationGrantType;
-import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
-import org.springframework.util.StringUtils;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties.Provider;
-import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.boot.convert.ApplicationConversionService;
 import org.springframework.core.convert.ConversionException;
 
 /**
- * Adapter class to convert {@link OAuth2ClientProperties} to a
+ * Adapter class to convert {@link AppIDOAuth2ConfigurationProperties} to a
  * {@link ClientRegistration}.
  */
 

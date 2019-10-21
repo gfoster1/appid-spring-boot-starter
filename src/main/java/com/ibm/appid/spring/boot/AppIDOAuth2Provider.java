@@ -8,7 +8,6 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
-import org.springframework.util.StringUtils;
 
 /**
  * AppID OAuth2 Providers that can be used to create pre-configured with sensible defaults.
@@ -20,22 +19,7 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-			builder.clientId(properties.getClientId());
-			builder.clientSecret(properties.getClientSecret());
-			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-			builder.redirectUriTemplate(properties.getRedirectUri());
-			Set<String> scope = new HashSet<String>();
-			scope.add("openid");
-			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/userinfo");
-			builder.jwkSetUri(APPID_OAUTH_URL_DALLAS + properties.getTenantID() + "/publickeys");
-			builder.userNameAttributeName(IdTokenClaimNames.SUB);
-			builder.clientName("AppID");
-			return builder;
+			return getBuilder(registrationId, APPID_OAUTH_URL_DALLAS, properties);
 		}
 	},
 
@@ -43,22 +27,7 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-			builder.clientId(properties.getClientId());
-			builder.clientSecret(properties.getClientSecret());
-			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-			builder.redirectUriTemplate(properties.getRedirectUri());
-			Set<String> scope = new HashSet<String>();
-			scope.add("openid");
-			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/userinfo");
-			builder.jwkSetUri(APPID_OAUTH_URL_SYDNEY + properties.getTenantID() + "/publickeys");
-			builder.userNameAttributeName(IdTokenClaimNames.SUB);
-			builder.clientName("AppID");
-			return builder;
+			return getBuilder(registrationId, APPID_OAUTH_URL_SYDNEY, properties);
 		}
 	},
 
@@ -66,22 +35,7 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-			builder.clientId(properties.getClientId());
-			builder.clientSecret(properties.getClientSecret());
-			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-			builder.redirectUriTemplate(properties.getRedirectUri());
-			Set<String> scope = new HashSet<String>();
-			scope.add("openid");
-			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/userinfo");
-			builder.jwkSetUri(APPID_OAUTH_URL_FRANKFURT + properties.getTenantID() + "/publickeys");
-			builder.userNameAttributeName(IdTokenClaimNames.SUB);
-			builder.clientName("AppID");
-			return builder;
+			return getBuilder(registrationId, APPID_OAUTH_URL_FRANKFURT, properties);
 		}
 	},
 
@@ -89,22 +43,7 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-			builder.clientId(properties.getClientId());
-			builder.clientSecret(properties.getClientSecret());
-			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-			builder.redirectUriTemplate(properties.getRedirectUri());
-			Set<String> scope = new HashSet<String>();
-			scope.add("openid");
-			builder.scope(properties.getScope() != null && properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/userinfo");
-			builder.jwkSetUri(APPID_OAUTH_URL_LONDON + properties.getTenantID() + "/publickeys");
-			builder.userNameAttributeName(IdTokenClaimNames.SUB);
-			builder.clientName("AppID");
-			return builder;
+			return getBuilder(registrationId, APPID_OAUTH_URL_LONDON, properties);
 		}
 	},
 	
@@ -112,30 +51,47 @@ public enum AppIDOAuth2Provider {
 
 		@Override
 		public Builder getBuilder(String registrationId, AppIDOAuth2ConfigurationProperties.Registration properties) {
-			ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
-			builder.clientId(properties.getClientId());
-			builder.clientSecret(properties.getClientSecret());
-			builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
-			builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-			builder.redirectUriTemplate(properties.getRedirectUri());
-			Set<String> scope = new HashSet<String>();
-			scope.add("openid");
-			builder.scope(properties.getScope().size() > 0 ? properties.getScope() : scope);
-			builder.authorizationUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/authorization");
-			builder.tokenUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/token");
-			builder.userInfoUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/userinfo");
-			builder.jwkSetUri(APPID_OAUTH_URL_TOKYO + properties.getTenantID() + "/publickeys");
-			builder.userNameAttributeName(IdTokenClaimNames.SUB);
-			builder.clientName("AppID");
-			return builder;
+			return getBuilder(registrationId, APPID_OAUTH_URL_TOKYO, properties);
 		}
 	};
 	
-	private static final String APPID_OAUTH_URL_DALLAS = "https://us-south.appid.cloud.ibm.com/oauth/v4/";
-	private static final String APPID_OAUTH_URL_SYDNEY = "https://au-syd.appid.cloud.ibm.com/oauth/v4/";
-	private static final String APPID_OAUTH_URL_FRANKFURT = "https://eu-de.appid.cloud.ibm.com/oauth/v4/";
-	private static final String APPID_OAUTH_URL_LONDON = "https://eu-gb.appid.cloud.ibm.com/oauth/v4/";
-	private static final String APPID_OAUTH_URL_TOKYO = "https://jp-tok.appid.cloud.ibm.com/oauth/v4/";
+	private static final String APPID_OAUTH_URL_DALLAS = "https://us-south.appid.cloud.ibm.com/oauth/";
+	private static final String APPID_OAUTH_URL_SYDNEY = "https://au-syd.appid.cloud.ibm.com/oauth/";
+	private static final String APPID_OAUTH_URL_FRANKFURT = "https://eu-de.appid.cloud.ibm.com/oauth/";
+	private static final String APPID_OAUTH_URL_LONDON = "https://eu-gb.appid.cloud.ibm.com/oauth/";
+	private static final String APPID_OAUTH_URL_TOKYO = "https://jp-tok.appid.cloud.ibm.com/oauth/";
+	
+	
+	public Builder getBuilder(String registrationId, String appIDURL, AppIDOAuth2ConfigurationProperties.Registration properties) {
+		Set<String> scope = new HashSet<String>();
+		scope.add("openid");
+		String oAuthServerUri = getOAuthServerUri(appIDURL, properties.getOAuthServerUri(),
+				properties.getVersion(), properties.getTenantID());
+		
+		ClientRegistration.Builder builder = ClientRegistration.withRegistrationId(registrationId);
+		builder.clientId(properties.getClientId());
+		builder.clientSecret(properties.getClientSecret());
+		builder.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC);
+		builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+		builder.redirectUriTemplate(properties.getRedirectUri());
+		builder.scope(properties.getScope() != null ? properties.getScope() : scope);
+		builder.authorizationUri(oAuthServerUri + "/authorization");
+		builder.tokenUri(oAuthServerUri + "/token");
+		builder.userInfoUri(oAuthServerUri + "/userinfo");
+		builder.jwkSetUri(oAuthServerUri + "/publickeys");
+		builder.userNameAttributeName(IdTokenClaimNames.SUB);
+		builder.clientName("AppID");
+		return builder;
+	}
+	
+	public String getOAuthServerUri(String appIDURL, String oAuthServerUri, String version, String tenantID) {
+		if(oAuthServerUri != null) {
+			return oAuthServerUri;
+		}
+		return new StringBuilder(appIDURL)
+				.append("v" + version + "/")
+				.append(tenantID).toString();
+	}
 
 	/**
 	 * Create a new pre-configured with provider defaults.

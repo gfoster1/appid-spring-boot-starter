@@ -98,6 +98,16 @@ public class AppIDOAuth2ConfigurationProperties {
 		 */
 		private String tenantID;
 		
+		/**
+		 * version of AppID end point
+		 */
+		private String version;
+		
+		/**
+		 * OAuthServerUri of AppID
+		 */
+		private String oAuthServerUri;
+		
 		public String getProvider() {
 			return this.provider;
 		}
@@ -146,16 +156,6 @@ public class AppIDOAuth2ConfigurationProperties {
 			this.redirectUri = redirectUri;
 		}
 
-		@Deprecated
-		public String getRedirectUriTemplate() {
-			return getRedirectUri();
-		}
-
-		@Deprecated
-		public void setRedirectUriTemplate(String redirectUri) {
-			setRedirectUri(redirectUri);
-		}
-
 		public Set<String> getScope() {
 			return this.scope;
 		}
@@ -186,6 +186,22 @@ public class AppIDOAuth2ConfigurationProperties {
 
 		public void setTenantID(String tenantID) {
 			this.tenantID = tenantID;
+		}
+		
+		public String getVersion() {
+			return version;
+		}
+
+		public void setVersion(String version) {
+			this.version = version;
+		}
+		
+		public String getOAuthServerUri() {
+			return oAuthServerUri;
+		}
+
+		public void setOAuthServerUri(String oAuthServerUri) {
+			this.oAuthServerUri = oAuthServerUri;
 		}
 	}
 }
