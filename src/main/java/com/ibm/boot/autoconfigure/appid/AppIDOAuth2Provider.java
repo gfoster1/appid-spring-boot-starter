@@ -1,4 +1,4 @@
-package com.ibm.appid.spring.boot;
+package com.ibm.boot.autoconfigure.appid;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,7 +1,4 @@
-package com.ibm.appid.spring.boot;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.ibm.boot.autoconfigure.appid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties(AppIDOAuth2ConfigurationProperties.class)
