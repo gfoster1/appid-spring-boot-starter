@@ -204,4 +204,101 @@ public class AppIDOAuth2ConfigurationProperties {
 			this.oAuthServerUri = oAuthServerUri;
 		}
 	}
+	
+	public static class Provider {
+
+		/**
+		 * Authorization URI for the provider.
+		 */
+		private String authorizationUri;
+
+		/**
+		 * Token URI for the provider.
+		 */
+		private String tokenUri;
+
+		/**
+		 * User info URI for the provider.
+		 */
+		private String userInfoUri;
+
+		/**
+		 * User info authentication method for the provider.
+		 */
+		private String userInfoAuthenticationMethod;
+
+		/**
+		 * Name of the attribute that will be used to extract the username from the call
+		 * to 'userInfoUri'.
+		 */
+		private String userNameAttribute;
+
+		/**
+		 * JWK set URI for the provider.
+		 */
+		private String jwkSetUri;
+
+		/**
+		 * URI that can either be an OpenID Connect discovery endpoint or an OAuth 2.0
+		 * Authorization Server Metadata endpoint defined by RFC 8414.
+		 */
+		private String issuerUri;
+
+		public String getAuthorizationUri() {
+			return this.authorizationUri;
+		}
+
+		public void setAuthorizationUri(String authorizationUri) {
+			this.authorizationUri = authorizationUri;
+		}
+
+		public String getTokenUri() {
+			return this.tokenUri;
+		}
+
+		public void setTokenUri(String tokenUri) {
+			this.tokenUri = tokenUri;
+		}
+
+		public String getUserInfoUri() {
+			return this.userInfoUri;
+		}
+
+		public void setUserInfoUri(String userInfoUri) {
+			this.userInfoUri = userInfoUri;
+		}
+
+		public String getUserInfoAuthenticationMethod() {
+			return this.userInfoAuthenticationMethod;
+		}
+
+		public void setUserInfoAuthenticationMethod(String userInfoAuthenticationMethod) {
+			this.userInfoAuthenticationMethod = userInfoAuthenticationMethod;
+		}
+
+		public String getUserNameAttribute() {
+			return this.userNameAttribute;
+		}
+
+		public void setUserNameAttribute(String userNameAttribute) {
+			this.userNameAttribute = userNameAttribute;
+		}
+
+		public String getJwkSetUri() {
+			return this.jwkSetUri;
+		}
+
+		public void setJwkSetUri(String jwkSetUri) {
+			this.jwkSetUri = jwkSetUri;
+		}
+
+		public String getIssuerUri() {
+			return this.issuerUri;
+		}
+
+		public void setIssuerUri(String issuerUri) {
+			this.issuerUri = issuerUri;
+		}
+
+	}
 }
